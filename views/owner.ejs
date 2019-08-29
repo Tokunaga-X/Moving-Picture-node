@@ -1,0 +1,90 @@
+<nav class="text-center navbar-light">
+  <img src="./images/logo.png" alt="logo" class="" />
+  <div class="info">
+    <a href="/users/logout" class="btn btn-secondary">Logout</a>
+  </div>
+</nav>
+
+<% if ((typeof status != 'undefined' ? status : '') =='success') { %>
+<h2 class="text-center bg-success">
+  <%= typeof msg != 'undefined' ? msg : '' %>
+</h2>
+<script>
+  swal("Good job!", "Upload successful!", "success");
+</script>
+<% } %> <% if ((typeof status != 'undefined' ? status : '') =='danger') { %>
+<script>
+  swal("Nope!", "No file be chosen!", "error");
+</script>
+<% } %>
+
+<form
+  class="text-center form"
+  action="/upload"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <div class="input-group mt-5">
+    <input type="file" name="myImage" id="real-file" hidden="hidden" />
+    <div class="fakeinput text-center">
+      <button type="button" id="custom-button">CHOOSE A FILE</button>
+      <span id="custom-text">No file chosen, yet.</span>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-5">Submit</button>
+</form>
+<br />
+
+<script>
+  const realFileBtn = document.getElementById("real-file");
+  const customBtn = document.getElementById("custom-button");
+  const customText = document.getElementById("custom-text");
+
+  customBtn.addEventListener("click", function() {
+    realFileBtn.click();
+  });
+
+  realFileBtn.addEventListener("change", function() {
+    if (realFileBtn.value) {
+      customText.innerHTML = realFileBtn.value.match(
+        /[\/\\]([\w\d\s\.\-\(\)]+)$/
+      )[1];
+    } else {
+      customText.innerHTML = "No file chosen, yet.";
+    }
+  });
+</script>
+<!-- 
+<div class="msg text-center">
+  <h4><%= typeof msg2 != 'undefined' ? msg2 : '' %></h4>
+  <br />
+  <img src="<%= typeof file != 'undefined' ? file : '' %>" />
+</div> -->
+
+<div class="gridContainer">
+  <ul class="ul" id="ul">
+    <script>
+      fetch("http://localhost:5000/api/picture/all")
+        .then(res => {
+          return res.text();
+        })
+        .then(data => {
+          JSON.parse(data).forEach(name => {
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+            a.href = `http://localhost:5000/api/picture/one/${name}`;
+            a.setAttribute("data-lightbox", "mygallery");
+            let img = document.createElement("img");
+            img.setAttribute(
+              "src",
+              `http://localhost:5000/api/picture/one/${name}`
+            );
+            a.appendChild(img);
+            li.appendChild(a);
+            document.getElementById("ul").appendChild(li);
+          });
+        });
+    </script>
+    <script></script>
+  </ul>
+</div>

@@ -1,0 +1,55 @@
+<nav class="text-center navbar-light">
+  <img src="./images/logo.png" alt="logo" class="" />
+</nav>
+<% if ((typeof status != 'undefined' ? status : '') =='success') { %>
+<h2 class="text-center bg-success">
+  <%= typeof msg != 'undefined' ? msg : '' %>
+</h2>
+<script>
+  setTimeout(() => {
+    history.back();
+  }, 3000);
+</script>
+<% } %> <% if ((typeof status != 'undefined' ? status : '') =='danger') { %>
+<h2 class="text-center bg-danger">
+  <%= typeof msg != 'undefined' ? msg : '' %>
+</h2>
+<script>
+  setTimeout(() => {
+    history.back();
+  }, 3000);
+</script>
+<% } %>
+<div class="msg text-center">
+  <h4><%= typeof msg2 != 'undefined' ? msg2 : '' %></h4>
+  <br />
+  <img src="<%= typeof file != 'undefined' ? file : '' %>" />
+</div>
+
+<div class="gridContainer">
+  <ul class="ul" id="ul">
+    <script>
+      fetch("http://localhost:5000/api/picture/all")
+        .then(res => {
+          return res.text();
+        })
+        .then(data => {
+          JSON.parse(data).forEach(name => {
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+            a.href = `http://localhost:5000/api/picture/one/${name}`;
+            a.setAttribute("data-lightbox", "mygallery");
+            let img = document.createElement("img");
+            img.setAttribute(
+              "src",
+              `http://localhost:5000/api/picture/one/${name}`
+            );
+            a.appendChild(img);
+            li.appendChild(a);
+            document.getElementById("ul").appendChild(li);
+          });
+        });
+    </script>
+    <script></script>
+  </ul>
+</div>

@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+.card {
+  margin: auto 8vh;
+}
+
+nav {
+  background-color: lightblue;
+  position: relative;
+  img {
+    width: 12%;
+  }
+  .info {
+    position: absolute;
+    right: -1%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.node {
+  width: 30vh;
+}
+
+.signin {
+  width: 5vh;
+}
+
+.msg {
+  img {
+    width: 50%;
+  }
+}
+
+.form {
+  margin: 2em 5em 0 5em;
+  // border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  #custom-button {
+    padding: 10px;
+    color: white;
+    background-color: #009578;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .fakeinput {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #custom-text {
+    margin-left: 10px;
+    font-family: inherit;
+    color: #aaa;
+  }
+}
+
+.gridContainer {
+  width: 100%;
+  margin-top: 10vh;
+  display: grid;
+  justify-content: stretch;
+  align-items: stretch;
+  ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+  }
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    img {
+      width: 100%;
+    }
+  }
+}
