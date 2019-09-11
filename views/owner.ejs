@@ -6,15 +6,26 @@
 </nav>
 
 <% if ((typeof status != 'undefined' ? status : '') =='success') { %>
-<h2 class="text-center bg-success">
-  <%= typeof msg != 'undefined' ? msg : '' %>
-</h2>
 <script>
-  swal("Good job!", "Upload successful!", "success");
+  Swal.fire({
+    text: "Successful upload",
+    title: "Uploaded!",
+    type: "success",
+    confirmButtonText: "Cool",
+
+    imageUrl: "<%= typeof file != 'undefined' ? file : '' %>",
+
+    imageAlt: "A tall image"
+  });
 </script>
 <% } %> <% if ((typeof status != 'undefined' ? status : '') =='danger') { %>
 <script>
-  swal("Nope!", "No file be chosen!", "error");
+  Swal.fire({
+    text: "No file been chosen!",
+    title: "Oops...",
+    type: "error",
+    confirmButtonText: "Cool"
+  });
 </script>
 <% } %>
 
@@ -54,12 +65,6 @@
     }
   });
 </script>
-<!-- 
-<div class="msg text-center">
-  <h4><%= typeof msg2 != 'undefined' ? msg2 : '' %></h4>
-  <br />
-  <img src="<%= typeof file != 'undefined' ? file : '' %>" />
-</div> -->
 
 <div class="gridContainer">
   <ul class="ul" id="ul">

@@ -12,14 +12,19 @@ ul {
 }
 
 .card {
-  margin: auto 8vh;
+  background: rgba(221, 221, 221, 0.3);
+  margin: 20vh auto auto;
+  a {
+    width: 15rem;
+    margin: auto;
+  }
 }
 
 nav {
   background-color: lightblue;
   position: relative;
   img {
-    width: 12%;
+    width: 25vh;
   }
   .info {
     position: absolute;
@@ -38,12 +43,6 @@ nav {
 
 .signin {
   width: 5vh;
-}
-
-.msg {
-  img {
-    width: 50%;
-  }
 }
 
 .form {
@@ -77,6 +76,7 @@ nav {
 
 .gridContainer {
   width: 100%;
+  padding: 0 1rem;
   margin-top: 10vh;
   display: grid;
   justify-content: stretch;
@@ -85,12 +85,20 @@ nav {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    @media screen and (max-width: 1100px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (max-width: 580px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
     grid-gap: 1em;
   }
   li {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    max-height: 40vh;
+    overflow: hidden;
     img {
       width: 100%;
     }

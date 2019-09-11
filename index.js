@@ -88,14 +88,11 @@ app.post("/upload", (req, res) => {
       console.log(req.file);
       if (req.file == undefined) {
         res.render("owner", {
-          status: "danger",
-          msg: "Em, no file selected!"
+          status: "danger"
         });
       } else {
         res.render("owner", {
           status: "success",
-          msg: "File Uploaded!",
-          msg2: "Here is what u uploaded:",
           file: `upload/${req.file.filename}`
         });
       }
@@ -107,6 +104,21 @@ app.post("/upload", (req, res) => {
 app.use("/", require("./route/intro"));
 app.use("/users", require("./route/users"));
 app.use("/api/picture", require("./route/api/picture"));
+
+app.all("*", function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.header("X-Powered-By", " 3.2.1");
+  //这段仅仅为了方便返回json而已
+  res.header("Content-Type", "application/json;charset=utf-8");
+  if (req.method == "OPTIONS") {
+    //让options请求快速返回
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
 
 // Port & Listen
 const PORT = process.env.PORT || 5000;

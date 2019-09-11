@@ -13,7 +13,13 @@ ul {
 }
 
 .card {
-  margin: auto 8vh;
+  background: rgba(221, 221, 221, 0.3);
+  margin: 20vh auto auto;
+}
+
+.card a {
+  width: 15rem;
+  margin: auto;
 }
 
 nav {
@@ -22,7 +28,7 @@ nav {
 }
 
 nav img {
-  width: 12%;
+  width: 25vh;
 }
 
 nav .info {
@@ -48,10 +54,6 @@ nav .info {
 
 .signin {
   width: 5vh;
-}
-
-.msg img {
-  width: 50%;
 }
 
 .form {
@@ -101,6 +103,7 @@ nav .info {
 
 .gridContainer {
   width: 100%;
+  padding: 0 1rem;
   margin-top: 10vh;
   display: -ms-grid;
   display: grid;
@@ -121,6 +124,20 @@ nav .info {
   grid-gap: 1em;
 }
 
+@media screen and (max-width: 1100px) {
+  .gridContainer ul {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .gridContainer ul {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+}
+
 .gridContainer li {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -131,6 +148,8 @@ nav .info {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  max-height: 40vh;
+  overflow: hidden;
 }
 
 .gridContainer li img {
