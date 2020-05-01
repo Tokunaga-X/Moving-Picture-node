@@ -16,7 +16,7 @@ require("./config/passport")(passport);
 // DB config
 const db = require("./config/keys").MongoURL;
 
-// Connect to MongoDB
+// // Connect to MongoDB
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB connected..."))
@@ -75,6 +75,7 @@ const storage = multer.diskStorage({
 // Init Upload
 const upload = multer({
   storage: storage
+  //单个文件用singele
 }).single("myImage");
 
 app.post("/upload", (req, res) => {
